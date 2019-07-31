@@ -16,7 +16,8 @@ class MainActivity : Activity() {
         checkOverlay()
         val serviceIntent = Intent(this, OverlayService::class.java)
         startService(serviceIntent)
-        this.finishAndRemoveTask()
+//        this.finish()
+//        this.finishAndRemoveTask()
     }
 
     private fun checkOverlay() {
