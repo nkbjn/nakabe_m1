@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "782079497168",
+    "firebase_url": "https://nakabe-m1-87397.firebaseio.com",
+    "project_id": "nakabe-m1-87397",
+    "storage_bucket": "nakabe-m1-87397.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782079497168:android:89427a26035172c1",
+        "android_client_info": {
+          "package_name": "jp.naist.ubi_lab.nakabe_m1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782079497168-iomre6konp2jmnpjc75to2vkc9qplb8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBS6Wio47HtGPUeVfSOkHTruMdLDAWuV6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782079497168-iomre6konp2jmnpjc75to2vkc9qplb8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
