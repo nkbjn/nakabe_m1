@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "782079497168-l8ontlo1f3b34296ogbni0phaqopf96i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jp.naist.ubi_lab.nakabe_m1",
+            "certificate_hash": "03fe334bcee37d8fdafffad3e524ce1ebc93804d"
+          }
+        },
+        {
           "client_id": "782079497168-iomre6konp2jmnpjc75to2vkc9qplb8g.apps.googleusercontent.com",
           "client_type": 3
         }
