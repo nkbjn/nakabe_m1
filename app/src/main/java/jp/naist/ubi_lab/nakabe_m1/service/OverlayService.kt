@@ -1,5 +1,6 @@
 package jp.naist.ubi_lab.nakabe_m1.service
 
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Service
 import android.content.BroadcastReceiver
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.overlay_layout.view.*
 
 
 
+@SuppressLint("InflateParams")
 class OverlayService : Service() {
     private val overlayView: ViewGroup by lazy {
         LayoutInflater.from(this).inflate(
@@ -91,9 +93,8 @@ class OverlayService : Service() {
 
     private fun clickListener(): View.() -> Unit {
         return {
-            setOnLongClickListener { view ->
+            setOnLongClickListener {
                 isLongClick = true
-                view.setBackgroundResource(R.color.colorSelected)
                 true
             }.apply {
                 setOnTouchListener { view, motionEvent ->
@@ -102,6 +103,7 @@ class OverlayService : Service() {
                     when (motionEvent.action) {
                         MotionEvent.ACTION_MOVE -> {
                             if (isLongClick) {
+                                overlayView.emotion_image.imageAlpha = 100
                                 val centerX = x - (displaySize.x / 2)
                                 val centerY = y - (displaySize.y / 2)
                                 params?.x = centerX
@@ -110,6 +112,7 @@ class OverlayService : Service() {
                             }
                         }
                         MotionEvent.ACTION_UP -> {
+                            overlayView.emotion_image.imageAlpha = 255
                             if (isLongClick) {
                                 view.setBackgroundResource(android.R.color.transparent)
                             }
