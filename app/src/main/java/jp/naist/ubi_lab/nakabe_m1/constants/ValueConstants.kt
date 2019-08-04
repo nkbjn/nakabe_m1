@@ -9,5 +9,4 @@ object ValueConstants{
     const val EMOTION_THRESHOLD_HAPPY = 0.3
 
     const val CUSTOM_OVERLAY_PERMISSION_REQUEST_CODE = 101
-
 }

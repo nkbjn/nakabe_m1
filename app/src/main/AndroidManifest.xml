@@ -31,7 +31,7 @@
                 android:name="com.google.firebase.messaging.default_notification_color"
                 android:resource="@color/colorAccent"/>
 
-        <activity android:name=".activity.MainActivity"
+        <activity android:name=".activities.MainActivity"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -40,18 +40,18 @@
         </activity>
 
         <activity
-                android:name=".activity.SettingsActivity"
+                android:name=".activities.SettingsActivity"
                 android:label="@string/title_activity_settings"
                 android:theme="@android:style/Theme.DeviceDefault.Light">
         </activity>
 
-        <service android:name=".service.OverlayService">
+        <service android:name=".services.OverlayService">
             <intent-filter>
                 <action android:name="android.intent.action.EMOTION"/>
             </intent-filter>
         </service>
         <service
-                android:name=".service.MyFirebaseMessagingService"
+                android:name=".services.MyFirebaseMessagingService"
                 android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

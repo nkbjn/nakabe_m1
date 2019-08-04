@@ -19,6 +19,15 @@
                 android:layout_marginStart="15dp" />
 
         <Button
+                android:id="@+id/normal_setting_button"
+                android:text="NORMAL"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
+
+        <Button
                 android:id="@+id/happy_setting_button"
                 android:text="HAPPY"
                 android:layout_weight="1"
@@ -27,6 +36,23 @@
                 android:layout_marginEnd="15dp"/>
 
     </LinearLayout>
+
+    <EditText
+            android:id="@+id/start_setting_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="ターゲットユーザの名前を入力してください"
+            android:inputType="textPersonName"/>
+
+    <Button
+            android:id="@+id/start_setting_button"
+            android:text="Start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"/>
 
     <Button
             android:id="@+id/finish_setting_button"
