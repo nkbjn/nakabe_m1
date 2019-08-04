@@ -13,10 +13,13 @@ import android.os.IBinder
 import android.view.*
 import android.view.WindowManager
 import jp.naist.ubi_lab.nakabe_m1.R
+import jp.naist.ubi_lab.nakabe_m1.activity.SettingsActivity
 import jp.naist.ubi_lab.nakabe_m1.constants.StringConstants.BROADCAST_EMOTION
 import jp.naist.ubi_lab.nakabe_m1.constants.ValueConstants.EMOTION_THRESHOLD_HAPPY
 import jp.naist.ubi_lab.nakabe_m1.constants.ValueConstants.EMOTION_THRESHOLD_SAD
 import kotlinx.android.synthetic.main.overlay_layout.view.*
+
+
 
 
 class OverlayService : Service() {
@@ -82,6 +85,7 @@ class OverlayService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+        windowManager.removeView(overlayView)
         unregisterReceiver(receiver)
     }
 
@@ -90,7 +94,7 @@ class OverlayService : Service() {
             setOnLongClickListener { view ->
                 isLongClick = true
                 view.setBackgroundResource(R.color.colorSelected)
-                false
+                true
             }.apply {
                 setOnTouchListener { view, motionEvent ->
                     val x = motionEvent.rawX.toInt()
@@ -114,6 +118,12 @@ class OverlayService : Service() {
                     }
                     false
                 }
+            }
+
+            setOnClickListener {
+                val intent = Intent(this@OverlayService, SettingsActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                application.startActivity(intent)
             }
         }
     }

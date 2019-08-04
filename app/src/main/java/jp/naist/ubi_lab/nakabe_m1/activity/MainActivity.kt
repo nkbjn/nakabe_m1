@@ -1,4 +1,4 @@
-package jp.naist.ubi_lab.nakabe_m1
+package jp.naist.ubi_lab.nakabe_m1.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -13,11 +13,13 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         checkOverlay()
         val serviceIntent = Intent(this, OverlayService::class.java)
         startService(serviceIntent)
         val messagingIntent = Intent(this, FirebaseMessagingService::class.java)
         startService(messagingIntent)
+        finish()
     }
 
     private fun checkOverlay() {
