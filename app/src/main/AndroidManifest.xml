@@ -32,7 +32,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name=".service.OverlayService"/>
+
+        <service android:name=".service.OverlayService">
+            <intent-filter>
+                <action android:name="android.intent.action.EMOTION"/>
+            </intent-filter>
+        </service>
+
         <service
                 android:name=".service.MyFirebaseMessagingService"
                 android:exported="false">

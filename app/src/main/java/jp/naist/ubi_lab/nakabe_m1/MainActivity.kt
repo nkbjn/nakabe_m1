@@ -6,10 +6,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import com.google.firebase.messaging.FirebaseMessagingService
+import jp.naist.ubi_lab.nakabe_m1.constants.ValueConstants.CUSTOM_OVERLAY_PERMISSION_REQUEST_CODE
 import jp.naist.ubi_lab.nakabe_m1.service.OverlayService
 
 class MainActivity : Activity() {
-    private val CUSTOM_OVERLAY_PERMISSION_REQUEST_CODE = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

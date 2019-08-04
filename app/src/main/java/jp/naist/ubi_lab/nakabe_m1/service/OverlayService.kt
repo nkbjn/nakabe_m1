@@ -2,8 +2,10 @@ package jp.naist.ubi_lab.nakabe_m1.service
 
 import android.annotation.TargetApi
 import android.app.Service
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.PixelFormat
 import android.graphics.Point
 import android.os.Build
@@ -11,6 +13,10 @@ import android.os.IBinder
 import android.view.*
 import android.view.WindowManager
 import jp.naist.ubi_lab.nakabe_m1.R
+import jp.naist.ubi_lab.nakabe_m1.constants.StringConstants.BROADCAST_EMOTION
+import jp.naist.ubi_lab.nakabe_m1.constants.ValueConstants.EMOTION_THRESHOLD_HAPPY
+import jp.naist.ubi_lab.nakabe_m1.constants.ValueConstants.EMOTION_THRESHOLD_SAD
+import kotlinx.android.synthetic.main.overlay_layout.view.*
 
 
 class OverlayService : Service() {
@@ -21,6 +27,7 @@ class OverlayService : Service() {
         ) as ViewGroup
     }
 
+    private lateinit var receiver: BroadcastReceiver
     private val windowManager: WindowManager by lazy { applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager }
     private var params: WindowManager.LayoutParams? = null
     private val displaySize: Point by lazy {
@@ -35,6 +42,22 @@ class OverlayService : Service() {
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        receiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent?.action.equals(BROADCAST_EMOTION)) {
+                    val score = intent?.getDoubleExtra(BROADCAST_EMOTION, 0.0)!!
+                    changeEmotionImage(score)
+                }
+            }
+        }
+
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(BROADCAST_EMOTION)
+        registerReceiver(receiver, intentFilter)
     }
 
     @TargetApi(Build.VERSION_CODES.O)
@@ -55,6 +78,11 @@ class OverlayService : Service() {
         windowManager.addView(overlayView, params)
 
         return START_STICKY
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
     }
 
     private fun clickListener(): View.() -> Unit {
@@ -86,6 +114,24 @@ class OverlayService : Service() {
                     }
                     false
                 }
+            }
+        }
+    }
+
+    private fun changeEmotionImage(score: Double) {
+        overlayView.emotion_score.text = score.toString()
+
+        when{
+            score < EMOTION_THRESHOLD_SAD ->{
+                overlayView.emotion_image.setImageResource(R.drawable.ic_face_sad)
+            }
+
+            score > EMOTION_THRESHOLD_HAPPY ->{
+                overlayView.emotion_image.setImageResource(R.drawable.ic_face_happy)
+            }
+
+            else ->{
+                overlayView.emotion_image.setImageResource(R.drawable.ic_face_normal)
             }
         }
     }
