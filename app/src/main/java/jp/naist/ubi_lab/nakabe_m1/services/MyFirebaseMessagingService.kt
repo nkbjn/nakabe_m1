@@ -17,16 +17,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        // 通知メッセージ
-        remoteMessage?.notification?.let { notification ->
-            // 通知メッセージを処理
-            Log.i("FIREBASE2", "[Service]  = Title = ${notification.title ?: "Empty2"}")
-            Log.i("FIREBASE3", "[Service]  = body = ${notification.body ?: "Empty3"}")
-        }
-
         // データメッセージ
         if (remoteMessage?.data?.isNotEmpty()!!) {
             remoteMessage.data?.let { data ->
+                Log.i("FIREBASE", "[Service]  = Title = $data")
                 // データメッセージを処理
                 messagingEntity = MessageEntity(data)
                 //ブロードキャストの送信
