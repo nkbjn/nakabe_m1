@@ -8,6 +8,7 @@ import android.graphics.PixelFormat
 import android.graphics.Point
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import android.view.*
 import android.view.WindowManager
 import jp.naist.ubi_lab.nakabe_m1.R
@@ -31,6 +32,7 @@ class OverlayService : Service() {
             null
         ) as ViewGroup
     }
+
     private lateinit var receiver: BroadcastReceiver
     private val windowManager: WindowManager by lazy { applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager }
     private var params: WindowManager.LayoutParams? = null
@@ -45,16 +47,22 @@ class OverlayService : Service() {
     private var isLongClick: Boolean = false
 
     override fun onBind(p0: Intent?): IBinder? {
+        //Log.i("FIREBASE", "ここまで来たよ13-1")
         return null
     }
 
     override fun onCreate() {
         super.onCreate()
+        //Log.i("FIREBASE", "ここまで来たよ13-2")
         receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
+                //Log.i("FIREBASE", "ここまで来たよ13-3")
                 if (intent?.action.equals(BROADCAST_EMOTION)) {
+                    Log.i("FIREBASE", "ここまで来たよ13-4")
                     val data = intent?.getSerializableExtra(BROADCAST_EMOTION)!!
+                    //Log.i("FIREBASE", "ここまで来たよ13-5")
                     if(data is MessageEntity) changeEmotionImage(data.score, data.user)
+                    //Log.i("FIREBASE", "ここまで来たよ13-6")
                 }
             }
         }
@@ -131,8 +139,8 @@ class OverlayService : Service() {
     }
 
     private fun changeEmotionImage(score: Double, user: String) {
-        overlayView.emotion_score.text = score.toString()
-        if(filterByUser(user)) {
+        if(filterByUser(user)) {//追加
+            overlayView.emotion_score.text = score.toString()
             when {
                 score < EMOTION_THRESHOLD_SAD -> {
                     overlayView.emotion_image.setImageResource(R.drawable.ic_face_sad)
@@ -152,7 +160,11 @@ class OverlayService : Service() {
     private fun filterByUser(user: String): Boolean {
         val pref = getSharedPreferences(USER_DATA, Context.MODE_PRIVATE)
         val currentName = pref.getString(USER_DATA_NAME, "")
+        Log.i("FIREBASE","currentName = $currentName, user = $user")
+        return currentName != user
+        /*
         return if (currentName == "") false
         else currentName == user
+        */
     }
 }

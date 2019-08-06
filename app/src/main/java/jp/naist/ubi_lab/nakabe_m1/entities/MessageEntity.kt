@@ -7,7 +7,7 @@ import java.io.Serializable
 
 class MessageEntity(
     var score: Double,
-    var message: String,
+    var text: String,
     var user: String
 ): Serializable{
     constructor(): this(0.0, "", "")
@@ -16,7 +16,7 @@ class MessageEntity(
 
     constructor(data: Map<String, String>): this(
         data.getValue("score").toDouble(),
-        data.getValue("message").toString(),
+        data.getValue("text").toString(),
         data.getValue("user").toString()
     )
 }

@@ -5,8 +5,8 @@ package jp.naist.ubi_lab.nakabe_m1.constants
  **/
 
 object ValueConstants{
-    const val EMOTION_THRESHOLD_SAD = -0.3
-    const val EMOTION_THRESHOLD_HAPPY = 0.3
+    const val EMOTION_THRESHOLD_SAD = 0
+    const val EMOTION_THRESHOLD_HAPPY = 0.4
 
     const val CUSTOM_OVERLAY_PERMISSION_REQUEST_CODE = 101
 }
