@@ -94,6 +94,7 @@ class OverlayService : Service() {
         return {
             setOnLongClickListener {
                 isLongClick = true
+                overlayView.emotion_image.imageAlpha = 100
                 true
             }.apply {
                 setOnTouchListener { view, motionEvent ->

@@ -3,11 +3,14 @@ package jp.naist.ubi_lab.nakabe_m1.activities
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import com.google.firebase.messaging.FirebaseMessagingService
 import jp.naist.ubi_lab.nakabe_m1.R
 import jp.naist.ubi_lab.nakabe_m1.constants.StringConstants
 import jp.naist.ubi_lab.nakabe_m1.constants.StringConstants.USER_DATA_NAME
+import jp.naist.ubi_lab.nakabe_m1.constants.ValueConstants
 import jp.naist.ubi_lab.nakabe_m1.entities.MessageEntity
 import jp.naist.ubi_lab.nakabe_m1.services.OverlayService
 import kotlinx.android.synthetic.main.settings_activity.*

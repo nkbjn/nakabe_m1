@@ -21,6 +21,7 @@ class MainActivity : Activity() {
         if(currentName == ""){
             val settingsIntent = Intent(this, SettingsActivity::class.java)
             startActivity(settingsIntent)
+            checkOverlay()
             finish()
         } else {
             checkOverlay()
